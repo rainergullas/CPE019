@@ -1,6 +1,6 @@
 ### Hi there 👋, My name is Rainer Gullas
 #### I am a Computer Engineering student from Technological Institute of the Philippines Quezon City
--My contact is ([link]9qrlgullas@tip.edu.ph))
+-My contact is ([link](qrlgullas@tip.edu.ph))
 - Eager to learn new things
 
 Skills: Python / HTML / CSS
