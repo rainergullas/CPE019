@@ -19,8 +19,9 @@ def main():
         grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
         resized_image = cv2.resize(grayscale_image, (28, 28))
         normalized_image = resized_image.astype('float32') / 255.0
-        reshaped_image = np.expand_dims(normalized_image, axis=0)
-        prediction = model.predict(reshaped_image)
+        roi = np.expand_dims(normalized_image, axis=-1)
+        roi = np.expand_dims(roi, axis=0)
+        prediction = loaded_model.predict(roi)
         predicted_label = np.argmax(prediction)
         st.image(image, caption=f"Predicted Label: {predicted_label}", use_column_width=True)
 
