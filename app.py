@@ -1,11 +1,6 @@
+pip install opencv-python
+
 import os
-
-# Install OpenCV if not already installed
-streamlit_logger = os.popen('pip show opencv-python-headless').read()
-if "Version" not in streamlit_logger:
-    os.system("pip install opencv-python-headless")
-
-# Now you can import OpenCV
 import cv2
 import numpy as np
 import streamlit as st
