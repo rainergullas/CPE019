@@ -4,6 +4,16 @@ import cv2
 import numpy as np
 import streamlit as st
 
+st.markdown(
+    <style>
+    body {
+        background-color: #f0f2f6; /* Set background color */
+    }
+    </style>
+    unsafe_allow_html=True
+)
+
+
 # Load the model
 @st.cache(allow_output_mutation=True)
 def load_trained_model():
