@@ -4,7 +4,7 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 
 # Load the trained model
-model_path = 'path_to_your_model.h5'
+model_path = '/content/drive/MyDrive/Emtech Final Project/number_detection_model.h5'
 model = load_model(model_path)
 
 # Define your Streamlit app
