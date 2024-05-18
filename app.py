@@ -1,4 +1,4 @@
-pip install opencv-python
+pip install opencv-python-headless
 
 import os
 import cv2
