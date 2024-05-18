@@ -27,7 +27,7 @@ def preprocess_image(image):
 
 # Define the Streamlit app
 def main():
-    st.title('MNIST Digit Recognition')
+    st.title('Emtech2 Final Project Number Recognition')
 
     # Upload image
     uploaded_image = st.file_uploader("Choose an image...", type=["jpg", "png"])
