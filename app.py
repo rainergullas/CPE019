@@ -8,7 +8,7 @@ st.markdown(
     """
     <style>
     body {
-        background-image: url('aurora.jpg'); /* Set background image URL */
+        background-image: aurora.jpg; /* Set background image URL */
         background-size: cover; /* Cover the entire background */
         background-repeat: no-repeat; /* Do not repeat the background image */
     }
