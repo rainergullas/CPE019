@@ -1,31 +1,49 @@
-import streamlit as st
-import numpy as np
-import cv2
+import os
 from tensorflow.keras.models import load_model
+import cv2
+import numpy as np
+import streamlit as st
 
+# Load the model
+@st.cache(allow_output_mutation=True)
+def load_trained_model():
+    model_path = 'model.h5'
+    model = load_model(model_path)
+    return model
 
-# Load the trained model
-model_path = 'number_detection_model.h5'
-model = load_model(model_path)
+model = load_trained_model()
 
-# Define your Streamlit app
+# Define a function to preprocess input image
+def preprocess_image(image):
+    # Convert to grayscale
+    grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # Resize to 28x28
+    resized_image = cv2.resize(grayscale_image, (28, 28))
+    # Normalize
+    normalized_image = resized_image.astype('float32') / 255.0
+    # Reshape to match model input shape
+    reshaped_image = np.expand_dims(normalized_image, axis=0)
+    return reshaped_image
+
+# Define the Streamlit app
 def main():
     st.title('Number Recognition')
 
+    # Upload image
     uploaded_image = st.file_uploader("Choose an image...", type=["jpg", "png"])
 
     if uploaded_image is not None:
         image = cv2.imdecode(np.fromstring(uploaded_image.read(), np.uint8), 1)
-        grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
-        resized_image = cv2.resize(grayscale_image, (28, 28))
-        normalized_image = resized_image.astype('float32') / 255.0
-        roi = np.expand_dims(normalized_image, axis=-1)
-        roi = np.expand_dims(roi, axis=0)
-        prediction = loaded_model.predict(roi)
-        predicted_label = np.argmax(prediction)
-        st.image(image, caption=f"Predicted Label: {predicted_label}", use_column_width=True)
+        st.image(image, caption='Uploaded Image', use_column_width=True)
 
-# Run the Streamlit app
+        # Preprocess image
+        preprocessed_image = preprocess_image(image)
+
+        # Make prediction
+        prediction = model.predict(preprocessed_image)
+        predicted_label = np.argmax(prediction)
+
+        st.write(f'Predicted Label: {predicted_label}')
+
 if __name__ == '__main__':
     main()
-
