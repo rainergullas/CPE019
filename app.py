@@ -4,19 +4,6 @@ import cv2
 import numpy as np
 import streamlit as st
 
-st.markdown(
-    """
-    <style>
-    body {
-        background-image: aurora.jpg; /* Set background image URL */
-        background-size: cover; /* Cover the entire background */
-        background-repeat: no-repeat; /* Do not repeat the background image */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Load the model
 @st.cache(allow_output_mutation=True)
 def load_trained_model():
