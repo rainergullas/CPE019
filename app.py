@@ -8,13 +8,14 @@ st.markdown(
     """
     <style>
     body {
-        background-color: #ffffff;
+        background-image: url('https://example.com/background-image.jpg'); /* Set background image URL */
+        background-size: cover; /* Cover the entire background */
+        background-repeat: no-repeat; /* Do not repeat the background image */
     }
     </style>
     """,
     unsafe_allow_html=True
 )
-
 
 # Load the model
 @st.cache(allow_output_mutation=True)
