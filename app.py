@@ -7,7 +7,7 @@ import streamlit as st
 # Load the model
 @st.cache(allow_output_mutation=True)
 def load_trained_model():
-    model_path = 'number_detection_model.h5'
+    model_path = 'model.h5'
     model = load_model(model_path)
     return model
 
@@ -27,7 +27,7 @@ def preprocess_image(image):
 
 # Define the Streamlit app
 def main():
-    st.title('Number Recognition')
+    st.title('MNIST Digit Recognition')
 
     # Upload image
     uploaded_image = st.file_uploader("Choose an image...", type=["jpg", "png"])
@@ -39,11 +39,16 @@ def main():
         # Preprocess image
         preprocessed_image = preprocess_image(image)
 
-        # Make prediction
-        prediction = model.predict(preprocessed_image)
-        predicted_label = np.argmax(prediction)
+        # Print preprocessed image shape for debugging
+        st.write(f'Preprocessed Image Shape: {preprocessed_image.shape}')
 
-        st.write(f'Predicted Label: {predicted_label}')
+        try:
+            # Make prediction
+            prediction = model.predict(preprocessed_image)
+            predicted_label = np.argmax(prediction)
+            st.write(f'Predicted Label: {predicted_label}')
+        except Exception as e:
+            st.error(f'Error during prediction: {e}')
 
 if __name__ == '__main__':
     main()
