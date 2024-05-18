@@ -5,11 +5,13 @@ import numpy as np
 import streamlit as st
 
 st.markdown(
+    """
     <style>
     body {
         background-color: #ffffff;
     }
     </style>
+    """,
     unsafe_allow_html=True
 )
 
