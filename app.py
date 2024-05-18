@@ -1,7 +1,8 @@
-import cv2
-import numpy as np
 import streamlit as st
+import numpy as np
+import cv2
 from tensorflow.keras.models import load_model
+
 
 # Load the trained model
 model_path = 'number_detection_model.h5'
@@ -15,13 +16,12 @@ def main():
 
     if uploaded_image is not None:
         image = cv2.imdecode(np.fromstring(uploaded_image.read(), np.uint8), 1)
-        resized_image = cv2.resize(image, (28, 28))
+        grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
+        resized_image = cv2.resize(grayscale_image, (28, 28))
         normalized_image = resized_image.astype('float32') / 255.0
         reshaped_image = np.expand_dims(normalized_image, axis=0)
-        
         prediction = model.predict(reshaped_image)
         predicted_label = np.argmax(prediction)
-
         st.image(image, caption=f"Predicted Label: {predicted_label}", use_column_width=True)
 
 # Run the Streamlit app
