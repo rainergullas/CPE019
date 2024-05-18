@@ -7,7 +7,7 @@ import streamlit as st
 # Load the model
 @st.cache(allow_output_mutation=True)
 def load_trained_model():
-    model_path = 'model.h5'
+    model_path = 'number_detection_model.h5'
     model = load_model(model_path)
     return model
 
